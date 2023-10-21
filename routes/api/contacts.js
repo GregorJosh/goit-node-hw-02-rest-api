@@ -1,5 +1,6 @@
 const express = require("express");
 const { nanoid } = require("nanoid");
+const Joi = require("joi");
 
 const {
   getContactById,
@@ -10,6 +11,13 @@ const {
 } = require("../../models/contacts.js");
 
 const router = express.Router();
+
+const contactSchema = Joi.object({
+  id: Joi.string(),
+  name: Joi.string(),
+  email: Joi.string().email(),
+  phone: Joi.string(),
+});
 
 router.get("/", async (req, res, next) => {
   try {
@@ -70,12 +78,21 @@ router.post("/", async (req, res, next) => {
   };
 
   try {
-    const newContact = await addContact(contact);
+    const validatedContact = await contactSchema.validateAsync(contact);
 
-    res.status(200).json({
-      status: 200,
-      data: newContact,
-    });
+    try {
+      const newContact = await addContact(contact);
+
+      res.status(200).json({
+        status: 200,
+        data: newContact,
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: 400,
+        message: error.message,
+      });
+    }
   } catch (error) {
     res.status(400).json({
       status: 400,
@@ -102,27 +119,36 @@ router.delete("/:contactId", async (req, res, next) => {
 });
 
 router.put("/:contactId", async (req, res, next) => {
-  try {
-    const { contactId } = req.params;
+  const { contactId } = req.params;
 
-    if (Object.keys(req.body).length === 0) {
-      res.status(400).json({
-        status: 400,
-        message: "missing fields",
-      });
-
-      return;
-    }
-
-    const updatedContact = await updateContact(contactId, req.body);
-
-    res.status(200).json({
-      status: 200,
-      data: updatedContact,
+  if (Object.keys(req.body).length === 0) {
+    res.status(400).json({
+      status: 400,
+      message: "missing fields",
     });
+
+    return;
+  }
+
+  try {
+    const validatedBody = await contactSchema.validateAsync(req.body);
+
+    try {
+      const updatedContact = await updateContact(contactId, validatedBody);
+
+      res.status(200).json({
+        status: 200,
+        data: updatedContact,
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: 404,
+        message: error.message,
+      });
+    }
   } catch (error) {
-    res.status(404).json({
-      status: 404,
+    res.status(400).json({
+      status: 400,
       message: error.message,
     });
   }
