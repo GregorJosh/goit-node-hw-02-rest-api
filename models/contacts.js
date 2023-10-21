@@ -7,9 +7,8 @@ const listContacts = async () => {
   const contacts = await fs.readFile(contactsPath, { encoding: "utf-8" });
 
   if (!contacts) {
-    throw new Error("\nThere are no contacts");
+    throw new Error("There are no contacts");
   }
-
   return JSON.parse(contacts);
 };
 
@@ -18,7 +17,7 @@ const getContactById = async (contactId) => {
   const contact = contacts.find((contact) => contact.id === contactId);
 
   if (!contact) {
-    throw new Error(`\nThere is no contact with id ${contactId}`);
+    throw new Error("Not found.");
   }
 
   return contact;
@@ -31,7 +30,7 @@ const removeContact = async (contactId) => {
   );
 
   if (filteredContacts.length === contacts.length) {
-    throw new Error(`Contact with ID ${contactId} not found.`);
+    throw new Error("Not found.");
   }
 
   fs.writeFile(contactsPath, JSON.stringify(filteredContacts));
@@ -39,20 +38,19 @@ const removeContact = async (contactId) => {
 
 const addContact = async (body) => {
   const contacts = await listContacts();
+
   const { id, name, email, phone } = body;
+
   const newContact = {
     id,
     name,
     email,
     phone,
   };
-
   const contactWithSameName = contacts.find((contact) => contact.name === name);
 
   if (contactWithSameName) {
-    throw new Error(
-      `Contact with name ${name} already exists in contacts.`
-    );
+    throw new Error(`Contact with name ${name} already exists in contacts`);
   }
 
   contacts.push(newContact);
@@ -61,25 +59,22 @@ const addContact = async (body) => {
   return newContact;
 };
 
-const updateContact = async (contactId, body) => {
+const updateContact = async (contactId, newData) => {
   const contacts = await listContacts();
+  const updatedContact = await getContactById(contactId);
   const contactIndex = contacts.findIndex(
     (contact) => contact.id === contactId
   );
 
-  if (contactIndex === -1) {
-    throw new Error(`\nThere is no contact with id ${contactId}`);
+  for (const key in newData) {
+    updatedContact[key] = newData[key];
   }
 
-  const updatedContact = {
-    ...contacts[contactIndex],
-    ...body,
-  };
-
   contacts[contactIndex] = updatedContact;
+
   fs.writeFile(contactsPath, JSON.stringify(contacts));
 
-  return updatedContact[0];
+  return updatedContact;
 };
 
 module.exports = {
