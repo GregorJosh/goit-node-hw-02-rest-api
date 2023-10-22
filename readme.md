@@ -1,6 +1,6 @@
 # Contacts Manager REST API  
   
-1. Endpoints:  
+## Endpoints:  
   
 List contacts:  
   - GET /contacts  
@@ -17,7 +17,7 @@ Update contact by ID:
 Delete contact by ID:
   - DELETE /contacts/:contactID  
     
-2. Data format for "Add new contact" and "Update contact by ID" requests:  
+## Data format for "Add new contact" and "Update contact by ID" requests:  
   - JSON with body contains fields: name, email and phone.  
 
 For example: 
