@@ -20,9 +20,11 @@ Delete contact by ID:
 ## Data format for "Add new contact" and "Update contact by ID" requests:  
   - JSON with body contains fields: name, email and phone.  
 
-For example: 
-{
-    name: "Contact Name",
-    email: "email.address@website.com",
-    phone: "123 456 789",
+For example:  
+  
+{  
+  name: "Contact Name",  
+  email: "email.address@website.com",  
+  phone: "123 456 789",  
 }  
+  
