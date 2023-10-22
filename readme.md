@@ -1,4 +1,7 @@
 # Contacts Manager REST API  
+
+REST API for Contacts Manager web application, written in Javascript. 
+This application is executing in Node.JS runtime environment.
   
 ## Endpoints:  
   
@@ -27,4 +30,4 @@ For example:
   email: "email.address@website.com",  
   phone: "123 456 789",  
 }  
-  
+
