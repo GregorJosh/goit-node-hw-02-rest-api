@@ -2,6 +2,9 @@
 
 REST API for Contacts Manager web application, written in Javascript. 
 This application is executing in Node.JS runtime environment.
+
+Console command for run this app:  
+  - npm start
   
 ## Endpoints:  
   
