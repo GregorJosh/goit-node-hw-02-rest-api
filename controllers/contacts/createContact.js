@@ -1,3 +1,7 @@
+const { nanoid } = require("nanoid");
+
+const contactSchema = require("../../validators/contactValidator");
+
 const { addContact } = require("../../models/contacts");
 
 async function createContact(request, response, next) {
