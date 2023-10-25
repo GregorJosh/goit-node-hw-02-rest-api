@@ -1,6 +1,7 @@
 const express = require("express");
 const { nanoid } = require("nanoid");
-const Joi = require("joi");
+
+const contactSchema = require("../../validators/contactValidator");
 
 const {
   getContactById,
@@ -11,13 +12,6 @@ const {
 } = require("../../models/contacts.js");
 
 const router = express.Router();
-
-const contactSchema = Joi.object({
-  id: Joi.string(),
-  name: Joi.string(),
-  email: Joi.string().email(),
-  phone: Joi.string(),
-});
 
 router.get("/", async (req, res, next) => {
   try {
