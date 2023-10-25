@@ -3,6 +3,7 @@ const { nanoid } = require("nanoid");
 
 const contactSchema = require("../../validators/contactValidator");
 const indexContacts = require("../../controllers/contacts/indexContacts");
+const getContact = require("../../controllers/contacts/getContact");
 
 const {
   getContactById,
@@ -14,23 +15,7 @@ const {
 const router = express.Router();
 
 router.get("/", indexContacts);
-
-router.get("/:contactId", async (req, res, next) => {
-  try {
-    const { contactId } = req.params;
-    const contact = await getContactById(contactId);
-
-    res.status(200).json({
-      status: 200,
-      data: contact,
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: 404,
-      data: error.message,
-    });
-  }
-});
+router.get("/:contactId", getContact);
 
 router.post("/", async (req, res, next) => {
   const { name, email, phone } = req.body;
