@@ -16,7 +16,7 @@ app.use(express.urlencoded());
 app.use('/contacts', contactsRouter);
 
 app.use((req, res) => {
-  res.status(404).json({ message: 'Not found' });
+  res.status(404).json({ message: 'Page not found' });
 });
 
 app.use((err, req, res, next) => {
