@@ -2,10 +2,10 @@ const express = require("express");
 const { nanoid } = require("nanoid");
 
 const contactSchema = require("../../validators/contactValidator");
+const indexContacts = require("../../controllers/contacts/indexContacts");
 
 const {
   getContactById,
-  listContacts,
   addContact,
   removeContact,
   updateContact,
@@ -13,21 +13,7 @@ const {
 
 const router = express.Router();
 
-router.get("/", async (req, res, next) => {
-  try {
-    const contacts = await listContacts();
-
-    res.status(200).json({
-      status: 200,
-      data: contacts,
-    });
-  } catch (error) {
-    res.status(400).json({
-      status: 400,
-      message: error.message,
-    });
-  }
-});
+router.get("/", indexContacts);
 
 router.get("/:contactId", async (req, res, next) => {
   try {
