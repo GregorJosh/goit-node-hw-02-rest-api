@@ -2,12 +2,12 @@ const express = require("express");
 const { nanoid } = require("nanoid");
 
 const contactSchema = require("../../validators/contactValidator");
+
 const indexContacts = require("../../controllers/contacts/indexContacts");
 const getContact = require("../../controllers/contacts/getContact");
+const createContact = require("../../controllers/contacts/createContact");
 
 const {
-  getContactById,
-  addContact,
   removeContact,
   updateContact,
 } = require("../../models/contacts.js");
@@ -16,55 +16,7 @@ const router = express.Router();
 
 router.get("/", indexContacts);
 router.get("/:contactId", getContact);
-
-router.post("/", async (req, res, next) => {
-  const { name, email, phone } = req.body;
-
-  const requiredParams = {
-    name,
-    email,
-    phone,
-  };
-
-  for (const param in requiredParams) {
-    if (!req.body[param]) {
-      res.status(400).json({
-        status: 400,
-        message: `Missing required ${param} field`,
-      });
-
-      return;
-    }
-  }
-
-  const contact = {
-    id: nanoid(),
-    ...req.body,
-  };
-
-  try {
-    const validatedContact = await contactSchema.validateAsync(contact);
-
-    try {
-      const newContact = await addContact(contact);
-
-      res.status(200).json({
-        status: 200,
-        data: newContact,
-      });
-    } catch (error) {
-      res.status(400).json({
-        status: 400,
-        message: error.message,
-      });
-    }
-  } catch (error) {
-    res.status(400).json({
-      status: 400,
-      message: error.message,
-    });
-  }
-});
+router.post("/", createContact);
 
 router.delete("/:contactId", async (req, res, next) => {
   try {
