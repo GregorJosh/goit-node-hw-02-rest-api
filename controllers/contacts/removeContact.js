@@ -1,6 +1,6 @@
-const contactsModel = require("../../models/contacts");
+import * as contactsModel from "../../models/contacts.js";
 
-async function removeContact(request, response, next) {
+export async function removeContact(request, response, next) {
   try {
     const { contactId } = request.params;
     await contactsModel.removeContact(contactId);
@@ -16,5 +16,3 @@ async function removeContact(request, response, next) {
     });
   }
 }
-
-module.exports = removeContact;

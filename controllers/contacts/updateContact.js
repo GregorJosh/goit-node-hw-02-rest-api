@@ -1,7 +1,7 @@
-const contactsModel = require("../../models/contacts");
-const contactSchema = require("../../validators/contactValidator");
+import * as contactsModel from "../../models/contacts.js";
+import { contactSchema } from "../../validators/contactValidator.js";
 
-async function updateContact(request, response, next) {
+export async function updateContact(request, response, next) {
   const { contactId } = request.params;
 
   if (Object.keys(request.body).length === 0) {
@@ -39,5 +39,3 @@ async function updateContact(request, response, next) {
     });
   }
 }
-
-module.exports = updateContact;

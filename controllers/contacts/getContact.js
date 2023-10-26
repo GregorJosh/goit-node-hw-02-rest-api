@@ -1,6 +1,6 @@
-const { getContactById } = require("../../models/contacts");
+import { getContactById } from "../../models/contacts.js";
 
-async function getContact(request, response, next) {
+export async function getContact(request, response, next) {
   try {
     const { contactId } = request.params;
     const contact = await getContactById(contactId);
@@ -16,5 +16,3 @@ async function getContact(request, response, next) {
     });
   }
 }
-
-module.exports = getContact;

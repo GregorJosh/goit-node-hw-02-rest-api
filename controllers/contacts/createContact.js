@@ -1,10 +1,9 @@
-const { nanoid } = require("nanoid");
+import { nanoid  } from "nanoid";
 
-const contactSchema = require("../../validators/contactValidator");
+import {contactSchema} from "../../validators/contactValidator.js";
+import { addContact } from "../../models/contacts.js";
 
-const { addContact } = require("../../models/contacts");
-
-async function createContact(request, response, next) {
+export async function createContact(request, response, next) {
   const { name, email, phone } = request.body;
 
   const requiredParams = {
@@ -52,5 +51,3 @@ async function createContact(request, response, next) {
     });
   }
 }
-
-module.exports = createContact;

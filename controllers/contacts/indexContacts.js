@@ -1,6 +1,6 @@
-const { listContacts } = require("../../models/contacts");
+import { listContacts } from "../../models/contacts.js";
 
-async function indexContacts(request, response, next) {
+export async function indexContacts(request, response, next) {
   try {
     const contacts = await listContacts();
 
@@ -15,5 +15,3 @@ async function indexContacts(request, response, next) {
     });
   }
 }
-
-module.exports = indexContacts;
