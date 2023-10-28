@@ -19,7 +19,10 @@ const contact = new Schema({
     match: /^[\d\+\-()]+$/,
     required: true,
   },
-  favorite: Boolean,
+  favorite: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export default mongoose.model("contact", contact);
