@@ -48,6 +48,9 @@ dbConnection
       console.log(ansi.green(`Server running. Use our API on port: ${PORT}.`));
     });
   })
-  .catch((error) =>
-    console.log(ansi.red(`Server not running. Error message: ${error.message}`))
-  );
+  .catch((error) => {
+    console.log(
+      ansi.red(`Server not running. Error message: ${error.message}`)
+    );
+    process.exit(1);
+  });
