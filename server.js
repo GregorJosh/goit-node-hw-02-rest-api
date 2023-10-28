@@ -3,6 +3,7 @@ import logger from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
 import { config } from "dotenv";
+import ansi from "ansi-colors-es6";
 
 import { APIRouter } from "./api/index.js";
 
@@ -43,9 +44,10 @@ app.use((error, request, response, next) => {
 dbConnection
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Server running. Use our API on port: ${PORT}.`);
+      console.log(ansi.green("Database connection successful"));
+      console.log(ansi.green(`Server running. Use our API on port: ${PORT}.`));
     });
   })
   .catch((error) =>
-    console.log(`Server not running. Error message: ${error.message}`)
+    console.log(ansi.red(`Server not running. Error message: ${error.message}`))
   );
