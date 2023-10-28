@@ -11,7 +11,7 @@ import {
 export const APIRouter = express.Router();
 
 APIRouter.get("/contacts", indexContacts);
-APIRouter.get("/contacts/:contactId", getContact);
+APIRouter.get("/contacts/:id", getContact);
 APIRouter.post("/contacts", createContact);
-APIRouter.delete("/contacts/:contactId", removeContact);
-APIRouter.put("/contacts/:contactId", updateContact);
+APIRouter.delete("/contacts/:id", removeContact);
+APIRouter.put("/contacts/:id", updateContact);
