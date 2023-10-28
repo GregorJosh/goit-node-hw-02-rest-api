@@ -3,7 +3,7 @@ import logger from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
 import { config } from "dotenv";
-import ansi from "ansi-colors-es6";
+import ansi from "./node_modules/ansi-colors-es6/index.js";
 
 import { APIRouter } from "./api/index.js";
 
