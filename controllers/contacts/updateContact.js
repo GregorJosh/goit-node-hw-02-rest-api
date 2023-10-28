@@ -1,39 +1,28 @@
-import * as contactsModel from "../../models/contacts/contacts.js";
+import Contact from "../../models/contact.js";
 
 export async function updateContact(request, response, next) {
-  const { contactId } = request.params;
+  const { params, body } = request;
+  const { id } = params;
 
-  if (Object.keys(request.body).length === 0) {
+  if (Object.keys(body).length === 0) {
     response.status(400).json({
       status: 400,
-      message: "missing fields",
+      message: "Missing fields",
     });
 
     return;
   }
 
   try {
-    const validatedBody = await contactSchema.validateAsync(request.body);
+    const updatedContact = await Contact.findByIdAndUpdate(id, body);
 
-    try {
-      const updatedContact = await contactsModel.updateContact(
-        contactId,
-        validatedBody
-      );
-
-      response.status(200).json({
-        status: 200,
-        data: updatedContact,
-      });
-    } catch (error) {
-      response.status(404).json({
-        status: 404,
-        message: error.message,
-      });
-    }
+    response.status(200).json({
+      status: 200,
+      data: updatedContact,
+    });
   } catch (error) {
-    response.status(400).json({
-      status: 400,
+    response.status(404).json({
+      status: 404,
       message: error.message,
     });
   }

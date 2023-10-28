@@ -1,9 +1,9 @@
-import { getContactById } from "../../models/contacts/contacts.js";
+import Contact from "../../models/contact.js";
 
 export async function getContact(request, response, next) {
   try {
-    const { contactId } = request.params;
-    const contact = await getContactById(contactId);
+    const { id } = request.params;
+    const contact = await Contact.findById(id);
 
     response.status(200).json({
       status: 200,

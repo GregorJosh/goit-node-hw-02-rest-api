@@ -7,4 +7,4 @@ const contact = new Schema({
   favorite: Boolean,
 });
 
-export const Contact = mongoose.model("contact", contact);
+export default mongoose.model("contact", contact);
