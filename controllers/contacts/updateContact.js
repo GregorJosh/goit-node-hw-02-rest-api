@@ -6,24 +6,23 @@ export async function updateContact(request, response, next) {
 
   if (Object.keys(body).length === 0) {
     response.status(400).json({
-      status: 400,
-      message: "Missing fields",
+      status: "error",
+      code: 400,
+      message: "Missing some fields",
     });
 
     return;
   }
 
   try {
-    const updatedContact = await Contact.findByIdAndUpdate(id, body);
+    await Contact.findByIdAndUpdate(id, body);
 
     response.status(200).json({
-      status: 200,
-      data: updatedContact,
+      status: "success",
+      code: 200,
+      data: { id, ...body },
     });
   } catch (error) {
-    response.status(404).json({
-      status: 404,
-      message: error.message,
-    });
+    next(error);
   }
 }

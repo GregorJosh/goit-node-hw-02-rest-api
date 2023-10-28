@@ -5,7 +5,8 @@ export async function indexContacts(request, response, next) {
     const contacts = await Contact.find();
 
     response.status(200).json({
-      status: 200,
+      status: "success",
+      code: 200,
       data: contacts,
     });
   } catch (error) {
