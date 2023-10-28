@@ -1,4 +1,4 @@
-import * as contactsModel from "../../models/contacts.js";
+import * as contactsModel from "../../models/contacts/contacts.js";
 
 export async function removeContact(request, response, next) {
   try {

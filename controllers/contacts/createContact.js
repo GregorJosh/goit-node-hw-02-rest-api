@@ -1,7 +1,4 @@
-import { nanoid  } from "nanoid";
-
-import {contactSchema} from "../../validators/contactValidator.js";
-import { addContact } from "../../models/contacts.js";
+import { addContact } from "../../models/contacts/contacts.js";
 
 export async function createContact(request, response, next) {
   const { name, email, phone } = request.body;

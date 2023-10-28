@@ -1,5 +1,4 @@
-import * as contactsModel from "../../models/contacts.js";
-import { contactSchema } from "../../validators/contactValidator.js";
+import * as contactsModel from "../../models/contacts/contacts.js";
 
 export async function updateContact(request, response, next) {
   const { contactId } = request.params;

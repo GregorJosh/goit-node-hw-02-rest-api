@@ -1,4 +1,4 @@
-import { getContactById } from "../../models/contacts.js";
+import { getContactById } from "../../models/contacts/contacts.js";
 
 export async function getContact(request, response, next) {
   try {

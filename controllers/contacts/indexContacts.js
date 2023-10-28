@@ -1,4 +1,4 @@
-import { listContacts } from "../../models/contacts.js";
+import { listContacts } from "../../models/contacts/contacts.js";
 
 export async function indexContacts(request, response, next) {
   try {
@@ -9,9 +9,6 @@ export async function indexContacts(request, response, next) {
       data: contacts,
     });
   } catch (error) {
-    response.status(400).json({
-      status: 400,
-      message: error.message,
-    });
+    next(error);
   }
 }

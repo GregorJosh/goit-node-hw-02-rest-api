@@ -1,15 +1,13 @@
-import fs from "fs/promises";
-import path from "path";
-
-const contactsPath = path.join(process.cwd(), "db", "contacts.json");
+import { Contact } from "./schema.js";
 
 export const listContacts = async () => {
-  const contacts = await fs.readFile(contactsPath, { encoding: "utf-8" });
+  const contacts = await Contact.find();
 
-  if (!contacts) {
+  if (contacts.length === 0) {
     throw new Error("There are no contacts");
   }
-  return JSON.parse(contacts);
+
+  return contacts;
 };
 
 export const getContactById = async (contactId) => {
