@@ -1,28 +1,18 @@
 import express from "express";
 import logger from "morgan";
 import cors from "cors";
-import mongoose from "mongoose";
-import { config } from "dotenv";
-import ansi from "./node_modules/ansi-colors-es6/index.js";
+import ansi from "ansi-colors-es6";
 
 import { APIRouter } from "./api/index.js";
+import { connectToDB } from "./drivers/mongo.js";
 
 const app = express();
 const logFormat = app.get("env") === "development" ? "dev" : "tiny";
 
 const start = async () => {
-  try {
-    const dbHostUrl = process.env.DB_HOST;
-
-    await mongoose.connect(dbHostUrl);
-  } catch (error) {
-    console.log(
-      ansi.red(`Server not running. Error message: ${error.message}`)
-    );
-    process.exit(1);
-  }
-
   const PORT = process.env.PORT || 3000;
+
+  await connectToDB();
 
   app.listen(PORT, () => {
     console.log(ansi.green("Database connection successful"));
@@ -54,5 +44,4 @@ app.use((error, request, response, next) => {
   });
 });
 
-config();
 start();
