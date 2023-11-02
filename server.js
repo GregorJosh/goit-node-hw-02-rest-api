@@ -5,9 +5,7 @@ import ansi from "ansi-colors-es6";
 
 import { APIRouter } from "./api/index.js";
 import { connectToDB } from "./drivers/mongo.js";
-
-import { notFound } from "./controllers/errors/notFound.js";
-import { internalError } from "./controllers/errors/internal.js";
+import { notFound, internalError } from "./controllers/errors/index.js";
 
 const start = async () => {
   const PORT = process.env.PORT || 3000;
