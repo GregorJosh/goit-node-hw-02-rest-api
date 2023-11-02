@@ -7,15 +7,28 @@ import ansi from "./node_modules/ansi-colors-es6/index.js";
 
 import { APIRouter } from "./api/index.js";
 
-config();
-
-const PORT = process.env.PORT || 3000;
-
 const app = express();
 const logFormat = app.get("env") === "development" ? "dev" : "tiny";
 
-const dbHostUrl = process.env.DB_HOST;
-const dbConnection = mongoose.connect(dbHostUrl, { useUnifiedTopology: true });
+const start = async () => {
+  try {
+    const dbHostUrl = process.env.DB_HOST;
+
+    await mongoose.connect(dbHostUrl);
+  } catch (error) {
+    console.log(
+      ansi.red(`Server not running. Error message: ${error.message}`)
+    );
+    process.exit(1);
+  }
+
+  const PORT = process.env.PORT || 3000;
+
+  app.listen(PORT, () => {
+    console.log(ansi.green("Database connection successful"));
+    console.log(ansi.green(`Server running. Use our API on port: ${PORT}.`));
+  });
+};
 
 app.use(logger(logFormat));
 app.use(cors());
@@ -41,16 +54,5 @@ app.use((error, request, response, next) => {
   });
 });
 
-dbConnection
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(ansi.green("Database connection successful"));
-      console.log(ansi.green(`Server running. Use our API on port: ${PORT}.`));
-    });
-  })
-  .catch((error) => {
-    console.log(
-      ansi.red(`Server not running. Error message: ${error.message}`)
-    );
-    process.exit(1);
-  });
+config();
+start();
