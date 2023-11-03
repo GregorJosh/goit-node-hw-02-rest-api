@@ -1,7 +1,7 @@
 # Contacts Manager REST API  
 
 REST API for Contacts Manager web application, written in Javascript. 
-This application is executing in Node.JS runtime environment.
+This application is executing in Node.JS runtime environment and use MongoDB for db system.
 
 Console command for run this app:  
 ```shell

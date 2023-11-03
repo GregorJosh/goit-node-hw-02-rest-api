@@ -1,17 +1,15 @@
-import { listContacts } from "../../models/contacts.js";
+import Contact from "../../models/contact.js";
 
 export async function indexContacts(request, response, next) {
   try {
-    const contacts = await listContacts();
+    const contacts = await Contact.find();
 
     response.status(200).json({
-      status: 200,
+      status: "success",
+      code: 200,
       data: contacts,
     });
   } catch (error) {
-    response.status(400).json({
-      status: 400,
-      message: error.message,
-    });
+    next(error);
   }
 }

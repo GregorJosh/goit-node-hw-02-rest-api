@@ -1,18 +1,16 @@
-import { getContactById } from "../../models/contacts.js";
+import Contact from "../../models/contact.js";
 
 export async function getContact(request, response, next) {
   try {
-    const { contactId } = request.params;
-    const contact = await getContactById(contactId);
+    const { id } = request.params;
+    const contact = await Contact.findById(id);
 
     response.status(200).json({
-      status: 200,
+      status: "success",
+      code: 200,
       data: contact,
     });
   } catch (error) {
-    response.status(404).json({
-      status: 404,
-      data: error.message,
-    });
+    next(error);
   }
 }
