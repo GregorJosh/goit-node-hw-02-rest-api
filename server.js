@@ -13,8 +13,10 @@ const start = async () => {
   await connectToDB();
 
   app.listen(PORT, () => {
-    console.log(ansi.green("Database connection successful"));
-    console.log(ansi.green(`Server running. Use our API on port: ${PORT}.`));
+    console.log(ansi.bold.cyan("Database connection successful"));
+    console.log(
+      ansi.bold.cyan(`Server running. Use our API on port: ${PORT}.`)
+    );
   });
 };
 
