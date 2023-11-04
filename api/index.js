@@ -7,7 +7,8 @@ import {
   updateContact,
   removeContact,
   updateContactStatus,
-} from "../controllers/contacts/index.js";
+  signupUser,
+} from "../controllers/index.js";
 
 export const APIRouter = Router();
 
@@ -17,3 +18,4 @@ APIRouter.post("/contacts", createContact);
 APIRouter.delete("/contacts/:id", removeContact);
 APIRouter.put("/contacts/:id", updateContact);
 APIRouter.patch("/contacts/:id/favorite", updateContactStatus);
+APIRouter.post("/users/signup", signupUser);
