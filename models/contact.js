@@ -1,4 +1,4 @@
-import { mongoose, Schema } from "mongoose";
+import { mongoose, Schema, SchemaTypes } from "mongoose";
 
 const contact = new Schema({
   name: {
@@ -22,6 +22,10 @@ const contact = new Schema({
   favorite: {
     type: Boolean,
     default: false,
+  },
+  owner: {
+    type: SchemaTypes.ObjectId,
+    ref: "user",
   },
 });
 
