@@ -1,4 +1,4 @@
-import { mongoose, Schema, SchemaTypes } from "mongoose";
+import { model, Schema, SchemaTypes } from "mongoose";
 
 const contact = new Schema({
   name: {
@@ -29,4 +29,4 @@ const contact = new Schema({
   },
 });
 
-export default mongoose.model("contact", contact);
+export default model("contact", contact);
