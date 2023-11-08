@@ -1,6 +1,7 @@
-import { mongoose, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
+import bCrypt from "bcryptjs";
 
-const schema = {
+const userSchema = {
   password: {
     type: String,
     required: [true, "Password is required"],
@@ -21,6 +22,17 @@ const schema = {
   },
 };
 
-const user = new Schema(schema);
+const user = new Schema(userSchema);
 
-export default mongoose.model("user", user);
+user.methods.setPassword = async function (password) {
+  const salt = await bCrypt.genSalt(6);
+  const saltedPassw = await bCrypt.hash(password, salt);
+
+  this.password = saltedPassw;
+};
+
+user.methods.validPassword = async function (password) {
+  return await bCrypt.compare(password, this.password);
+};
+
+export default model("user", user);
