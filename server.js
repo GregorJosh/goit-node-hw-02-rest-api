@@ -1,11 +1,13 @@
 import express from "express";
 import logger from "morgan";
 import cors from "cors";
+import passport from "passport";
 import ansi from "ansi-colors-es6";
 
 import { APIRouter } from "./api/index.js";
-import { connectToDB } from "./drivers/mongo.js";
-import { notFound, internalError } from "./controllers/errors/index.js";
+import { connectToDB } from "./drivers/index.js";
+import { authStrategy } from "./auth/index.js";
+import { notFound, internalError } from "./controllers/index.js";
 
 const start = async () => {
   const PORT = process.env.PORT || 3000;
@@ -27,6 +29,7 @@ app.use(logger(logFormat));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+passport.use(authStrategy);
 app.use("/api", APIRouter);
 app.use(notFound);
 app.use(internalError);
