@@ -25,11 +25,12 @@ const start = async () => {
 const app = express();
 const logFormat = app.get("env") === "development" ? "dev" : "tiny";
 
+passport.use(authStrategy);
+
 app.use(logger(logFormat));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-passport.use(authStrategy);
 app.use("/api", APIRouter);
 app.use(notFound);
 app.use(internalError);
