@@ -16,25 +16,29 @@ export const signupUser = async (request, response, next) => {
     });
   }
 
-  const user = await User.findOne({ email }).lean();
+  try {
+    const user = await User.findOne({ email }).lean();
 
-  if (user) {
-    return response.status(409).json({
-      status: "Conflict",
-      code: 409,
-      message: "Email in use",
+    if (user) {
+      return response.status(409).json({
+        status: "Conflict",
+        code: 409,
+        message: "Email in use",
+      });
+    }
+
+    const newUser = new User({ email });
+    const { subscription } = newUser;
+
+    await newUser.setPassword(password);
+    await newUser.save();
+
+    return response.status(201).json({
+      status: "Created",
+      code: 201,
+      data: { email, subscription },
     });
+  } catch (error) {
+    next(error);
   }
-
-  const newUser = new User({ email });
-  const { subscription } = newUser;
-
-  await newUser.setPassword(password);
-  await newUser.save();
-
-  return response.status(201).json({
-    status: "Created",
-    code: 201,
-    data: { email, subscription },
-  });
 };
