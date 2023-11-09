@@ -19,30 +19,37 @@ export const loginUser = async (request, response, next) => {
     });
   }
 
-  const user = await User.findOne({ email });
-  const { id, subscription } = user;
+  try {
+    const user = await User.findOne({ email });
+    const { id, subscription } = user;
 
-  if (!user || !(await user.validPassword)) {
-    return response.status(401).json({
-      status: "Unauthorized",
-      code: 401,
-      message: "Email or password is wrong",
+    if (!user || !(await user.validPassword)) {
+      return response.status(401).json({
+        status: "Unauthorized",
+        code: 401,
+        message: "Email or password is wrong",
+      });
+    }
+
+    config();
+
+    const token = JWT.sign({ id, email }, process.env.SECRET, {
+      expiresIn: "1h",
     });
+
+    user.token = token;
+    await user.save();
+
+    return response.status(200).json({
+      status: "OK",
+      code: 200,
+      token: token,
+      user: {
+        email,
+        subscription,
+      },
+    });
+  } catch (error) {
+    next(error);
   }
-
-  config();
-
-  const token = JWT.sign({ id, email }, process.env.SECRET, {
-    expiresIn: "1h",
-  });
-
-  return response.status(200).json({
-    status: "OK",
-    code: 200,
-    token: token,
-    user: {
-      email,
-      subscription,
-    },
-  });
 };
