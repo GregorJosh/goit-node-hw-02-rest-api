@@ -1,3 +1,4 @@
+import JWT from "jsonwebtoken";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { config } from "dotenv";
 
@@ -10,12 +11,18 @@ const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 };
 
-const verify = async ({ id }, onVerified) => {
+const verify = async (token, onVerified) => {
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(token.id);
 
     if (!user) {
-      return onVerified(new Error("User not found."));
+      throw new Error("User not found.");
+    }
+
+    const userToken = JWT.verify(user.token, process.env.SECRET);
+
+    if (userToken.iat !== token.iat) {
+      throw new Error("Not valid token.");
     }
 
     return onVerified(null, user);
