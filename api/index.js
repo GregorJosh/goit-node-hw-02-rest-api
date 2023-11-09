@@ -9,6 +9,8 @@ import {
   updateContactStatus,
   signupUser,
   loginUser,
+  logoutUser,
+  currentUser,
 } from "../controllers/index.js";
 
 import { authMW } from "../auth/index.js";
@@ -23,3 +25,5 @@ APIRouter.put("/contacts/:id", authMW, updateContact);
 APIRouter.patch("/contacts/:id/favorite", authMW, updateContactStatus);
 APIRouter.post("/users/signup", signupUser);
 APIRouter.post("/users/login", loginUser);
+APIRouter.get("/users/logout", authMW, logoutUser);
+APIRouter.get("/users/current", authMW, currentUser);
