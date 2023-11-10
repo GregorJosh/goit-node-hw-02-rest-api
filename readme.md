@@ -17,7 +17,12 @@ npm start
   
   - 📡 List contacts:  
 
-    Request: GET /api/contacts  
+    Request: GET /api/contacts?page=1&limit=10&favorite=true  
+  
+    Query Params:  
+    - page - Page number (number)
+    - limit - Contacts limit per page (number)
+    - favorite - favorite contacts filter (true/false)
       
     Headers:  
     `Authorization: "Bearer {{token}}"`  
@@ -116,5 +121,11 @@ npm start
     
     Headers:  
     `Authorization: "Bearer {{token}}"`  
-    
   
+  
+  - 📡 Get current user:  
+  
+    Request: GET /users/current  
+  
+    Headers:  
+    `Authorization: "Bearer {{token}}"`  
