@@ -14,19 +14,34 @@ npm start
   
 List contacts:  
   - GET /api/contacts  
+    
+  Authorization: "Bearer {{token}}"  
+    
   
 Get contact by ID:
   - GET /api/contacts/:contactID  
+    
+  Authorization: "Bearer {{token}}"  
+    
   
 Add new contact:  
   - POST /api/contacts  
+    
+  Authorization: "Bearer {{token}}"  
+    
       
 Update contact by ID:
   - PUT /api/contacts/:contactID  
-    
+
+  Authorization: "Bearer {{token}}"  
+
+      
 Delete contact by ID:
   - DELETE /api/contacts/:contactID  
-  
+
+  Authorization: "Bearer {{token}}"  
+    
+      
 ### User Access Control:  
   
 Create new user:
@@ -34,13 +49,33 @@ Create new user:
   
     Content-Type: application/json  
 
-    Body:  
+    Example Request Body:  
     ```json
     {
       email: "user.email@host.com",
       password: "Password-1234", 
     }
-    ```
+    ```  
+    
+User log in:  
+  - POST /api/users.login  
+    
+    Content-Type: application/json  
+      
+    Example Request Body:  
+    ```json
+    {
+      email: "user.email@host.com",
+      password: "Password-1234", 
+    }
+    ``` 
+      
+User log out:
+  - GET /users/logout  
+    
+    Authorization: "Bearer {{token}}"  
+      
+
     
 ## Data format for "Add new contact" and "Update contact by ID" requests:  
   - JSON with body contains fields: name, email and phone.  
