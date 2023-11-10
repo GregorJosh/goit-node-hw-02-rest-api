@@ -12,17 +12,21 @@ npm start
 
 ### Managing Contacts:
   
-List contacts:  
-  - GET /api/contacts  
+  - List contacts:  
+
+    Request: GET /api/contacts  
+      
+    Headers:  
+    `Authorization: "Bearer {{token}}"`  
+      
+
+  - Get contact by ID:  
     
-  Authorization: "Bearer {{token}}"  
-    
+    Request: GET /api/contacts/:contactID  
   
-Get contact by ID:
-  - GET /api/contacts/:contactID  
-    
-  Authorization: "Bearer {{token}}"  
-    
+    Headers:  
+    `Authorization: "Bearer {{token}}"`  
+  
   
 Add new contact:  
   - POST /api/contacts  
