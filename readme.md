@@ -17,7 +17,7 @@ npm start
 
   Request: GET /api/contacts?page=1&limit=10&favorite=true
 
-  Query Params:
+  Query Params (optional):
 
   - page - Page number (number)
   - limit - Contacts limit per page (number)
