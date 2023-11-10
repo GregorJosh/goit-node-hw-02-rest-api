@@ -9,21 +9,38 @@ npm start
 ```  
   
 ## Endpoints:  
+
+### Managing Contacts:
   
 List contacts:  
-  - GET /contacts  
+  - GET /api/contacts  
   
 Get contact by ID:
-  - GET /contacts/:contactID  
+  - GET /api/contacts/:contactID  
   
 Add new contact:  
-  - POST /contacts  
+  - POST /api/contacts  
       
 Update contact by ID:
-  - PUT /contacts/:contactID  
+  - PUT /api/contacts/:contactID  
     
 Delete contact by ID:
-  - DELETE /contacts/:contactID  
+  - DELETE /api/contacts/:contactID  
+  
+### User Access Control:  
+  
+Create new user:
+  - POST /api/users/signup  
+  
+    Content-Type: application/json  
+
+    Body:  
+```json
+{
+  email: "user.email@host.com",
+  password: "Password-1234", 
+}
+```
     
 ## Data format for "Add new contact" and "Update contact by ID" requests:  
   - JSON with body contains fields: name, email and phone.  
