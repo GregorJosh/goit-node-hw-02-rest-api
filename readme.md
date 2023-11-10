@@ -50,7 +50,7 @@ npm start
       "name": "Username",
       "phone": "123456789",
       "email": "user.email@host.com",
-      "favorite": "false" 
+      "favorite": "false" // optional
     }
     ```  
 
@@ -63,7 +63,7 @@ npm start
     Headers:  
     `Authorization: "Bearer {{token}}"`  
 
-    Example Request Body:  
+    Example Request Body (min. 1 field):  
     ```json
     {
       "name": "Username",
