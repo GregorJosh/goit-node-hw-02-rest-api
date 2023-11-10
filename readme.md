@@ -34,17 +34,39 @@ npm start
   - 📡 Add new contact:  
   
     Request: POST /api/contacts  
+    Content-Type: application/json
 
     Headers:  
     `Authorization: "Bearer {{token}}"`  
+
+    Example Request Body:  
+    ```json
+    {
+      "name": "Username",
+      "phone": "123456789",
+      "email": "user.email@host.com",
+      "favorite": "false" 
+    }
+    ```  
 
 
   - 📡 Update contact by ID:  
     
     Request: PUT /api/contacts/:contactID  
-  
+    Content-Type: application/json
+
     Headers:  
     `Authorization: "Bearer {{token}}"`  
+
+    Example Request Body:  
+    ```json
+    {
+      "name": "Username",
+      "phone": "123456789",
+      "email": "user.email@host.com",
+      "favorite": "false" 
+    }
+    ```  
   
   
   - 📡 Delete contact by ID:  
@@ -68,8 +90,8 @@ npm start
     Example Request Body:  
     ```json
     {
-      email: "user.email@host.com",
-      password: "Password-1234", 
+      "email": "user.email@host.com",
+      "password": "Password-1234", 
     }
     ```  
   
@@ -82,8 +104,8 @@ npm start
     Example Request Body:  
     ```json
     {
-      email: "user.email@host.com",
-      password: "Password-1234", 
+      "email": "user.email@host.com",
+      "password": "Password-1234", 
     }
     ``` 
   
