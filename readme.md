@@ -1,4 +1,5 @@
 # 📇 Contacts Manager REST API  
+  
 
 REST API for Contacts Manager web application, written in Javascript. 
 This application is executing in Node.JS runtime environment and use MongoDB for db system.
@@ -8,6 +9,8 @@ This application is executing in Node.JS runtime environment and use MongoDB for
 npm start
 ```  
   
+  
+
 ## 🗝️ Endpoints  
 
 ### 👥 Managing Contacts:
@@ -53,9 +56,11 @@ npm start
 
 
   
+  
+
 ### 👤 User Access Control:  
   
-  - Create new user:  
+  - 📡 Create new user:  
     Request: POST /api/users/signup  
     Content-Type: application/json  
   
@@ -68,7 +73,7 @@ npm start
     ```  
   
 
-  - User log in:  
+  - 📡 User log in:  
     Request: POST /api/users.login  
     Content-Type: application/json  
   
@@ -81,7 +86,7 @@ npm start
     ``` 
   
   
-  - User log out:  
+  - 📡 User log out:  
     Request: GET /users/logout  
     
     Headers:  
