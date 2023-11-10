@@ -10,49 +10,49 @@ npm start
   
 ## :🗝️: Endpoints  
 
-### Managing Contacts:
-  
-  - :📡: List contacts:  
-
-    Request: GET /api/contacts  
-      
-    Headers:  
-    `Authorization: "Bearer {{token}}"`  
-      
-
-  - :📡: Get contact by ID:  
+  ### Managing Contacts:
     
-    Request: GET /api/contacts/:contactID  
-  
-    Headers:  
-    `Authorization: "Bearer {{token}}"`  
-  
+    - :📡: List contacts:  
 
-  - :📡: Add new contact:  
-  
-    Request: POST /api/contacts  
+      Request: GET /api/contacts  
+        
+      Headers:  
+      `Authorization: "Bearer {{token}}"`  
+        
 
-    Headers:  
-    `Authorization: "Bearer {{token}}"`  
-
-
-  - :📡: Update contact by ID:  
+    - :📡: Get contact by ID:  
+      
+      Request: GET /api/contacts/:contactID  
     
-    Request: PUT /api/contacts/:contactID  
-  
-    Headers:  
-    `Authorization: "Bearer {{token}}"`  
-  
-  
-  - :📡: Delete contact by ID:  
-  
-    Request: DELETE /api/contacts/:contactID  
-  
-    Headers:  
-    `Authorization: "Bearer {{token}}"`  
+      Headers:  
+      `Authorization: "Bearer {{token}}"`  
+    
+
+    - :📡: Add new contact:  
+    
+      Request: POST /api/contacts  
+
+      Headers:  
+      `Authorization: "Bearer {{token}}"`  
 
 
-  
+    - :📡: Update contact by ID:  
+      
+      Request: PUT /api/contacts/:contactID  
+    
+      Headers:  
+      `Authorization: "Bearer {{token}}"`  
+    
+    
+    - :📡: Delete contact by ID:  
+    
+      Request: DELETE /api/contacts/:contactID  
+    
+      Headers:  
+      `Authorization: "Bearer {{token}}"`  
+
+
+    
 ### User Access Control:  
   
 Create new user:
