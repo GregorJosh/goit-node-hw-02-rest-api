@@ -27,12 +27,14 @@ npm start
     Headers:  
     `Authorization: "Bearer {{token}}"`  
   
+
+  - Add new contact:  
   
-Add new contact:  
-  - POST /api/contacts  
-    
-  Authorization: "Bearer {{token}}"  
-    
+    Request: POST /api/contacts  
+
+    Headers:  
+    `Authorization: "Bearer {{token}}"`  
+  
       
 Update contact by ID:
   - PUT /api/contacts/:contactID  
