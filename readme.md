@@ -1,18 +1,18 @@
-# Contacts Manager REST API  
+# :📇: Contacts Manager REST API  
 
 REST API for Contacts Manager web application, written in Javascript. 
 This application is executing in Node.JS runtime environment and use MongoDB for db system.
 
-Console command for run this app:  
+:⌨️: Console command for run this app:  
 ```shell
 npm start
 ```  
   
-## Endpoints:  
+## :🗝️: Endpoints  
 
 ### Managing Contacts:
   
-  - List contacts:  
+  - :📡: List contacts:  
 
     Request: GET /api/contacts  
       
@@ -20,7 +20,7 @@ npm start
     `Authorization: "Bearer {{token}}"`  
       
 
-  - Get contact by ID:  
+  - :📡: Get contact by ID:  
     
     Request: GET /api/contacts/:contactID  
   
@@ -28,26 +28,31 @@ npm start
     `Authorization: "Bearer {{token}}"`  
   
 
-  - Add new contact:  
+  - :📡: Add new contact:  
   
     Request: POST /api/contacts  
 
     Headers:  
     `Authorization: "Bearer {{token}}"`  
-  
-      
-Update contact by ID:
-  - PUT /api/contacts/:contactID  
 
-  Authorization: "Bearer {{token}}"  
 
-      
-Delete contact by ID:
-  - DELETE /api/contacts/:contactID  
-
-  Authorization: "Bearer {{token}}"  
+  - :📡: Update contact by ID:  
     
-      
+    Request: PUT /api/contacts/:contactID  
+  
+    Headers:  
+    `Authorization: "Bearer {{token}}"`  
+  
+  
+  - :📡: Delete contact by ID:  
+  
+    Request: DELETE /api/contacts/:contactID  
+  
+    Headers:  
+    `Authorization: "Bearer {{token}}"`  
+
+
+  
 ### User Access Control:  
   
 Create new user:
