@@ -8,4 +8,5 @@ export const userSchema = Joi.object({
   password: Joi.string().pattern(
     /^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*[0-9]+)(?=.*[-+*_]+).{8,}/
   ),
+  subscription: Joi.string().valid("starter", "pro", "business"),
 });
