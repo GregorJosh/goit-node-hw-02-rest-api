@@ -11,6 +11,7 @@ import {
   loginUser,
   logoutUser,
   currentUser,
+  updateUser,
 } from "../controllers/index.js";
 
 import { authMW } from "../auth/index.js";
@@ -27,3 +28,4 @@ APIRouter.post("/users/signup", signupUser);
 APIRouter.post("/users/login", loginUser);
 APIRouter.get("/users/logout", authMW, logoutUser);
 APIRouter.get("/users/current", authMW, currentUser);
+APIRouter.patch("/users", authMW, updateUser);
