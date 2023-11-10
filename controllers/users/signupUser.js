@@ -17,7 +17,7 @@ export const signupUser = async (request, response, next) => {
   }
 
   try {
-    const user = await User.findOne({ email }).lean();
+    const user = await User.findOne({ email }, { email: 1 }).lean();
 
     if (user) {
       return response.status(409).json({
