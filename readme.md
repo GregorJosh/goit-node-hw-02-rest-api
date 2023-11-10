@@ -35,12 +35,12 @@ Create new user:
     Content-Type: application/json  
 
     Body:  
-```json
-{
-  email: "user.email@host.com",
-  password: "Password-1234", 
-}
-```
+    ```json
+    {
+      email: "user.email@host.com",
+      password: "Password-1234", 
+    }
+    ```
     
 ## Data format for "Add new contact" and "Update contact by ID" requests:  
   - JSON with body contains fields: name, email and phone.  
