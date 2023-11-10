@@ -6,6 +6,8 @@ const contact = new Schema({
     minLength: 3,
     match: /^[a-zA-ZąęćłńóśźżĄĘĆŁŃÓŚŹŻ ']+$/,
     required: true,
+    index: true,
+    unique: true,
   },
   email: {
     type: String,
