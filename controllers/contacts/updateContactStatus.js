@@ -1,4 +1,4 @@
-import Contact from "../../models/contact.js";
+import Contact from "#models/contact.js";
 
 export const updateContactStatus = async (request, response, next) => {
   const { params, body } = request;
@@ -20,7 +20,7 @@ export const updateContactStatus = async (request, response, next) => {
     contact.favorite = favorite;
 
     response.status(200).json({
-      status: "success",
+      status: "Success",
       code: 200,
       data: contact,
     });

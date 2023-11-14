@@ -11,7 +11,7 @@ export const connectToDB = async () => {
     await mongoose.connect(dbHostUrl);
   } catch (error) {
     console.log(
-      ansi.red(`Server not running. Error message: ${error.message}`)
+      ansi.bold.red(`Server not running. Error message: ${error.message}`)
     );
     process.exit(1);
   }

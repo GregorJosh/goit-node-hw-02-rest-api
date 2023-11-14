@@ -1,4 +1,4 @@
-import { mongoose, Schema } from "mongoose";
+import { model, Schema, SchemaTypes } from "mongoose";
 
 const contact = new Schema({
   name: {
@@ -6,6 +6,8 @@ const contact = new Schema({
     minLength: 3,
     match: /^[a-zA-ZąęćłńóśźżĄĘĆŁŃÓŚŹŻ ']+$/,
     required: true,
+    index: true,
+    unique: true,
   },
   email: {
     type: String,
@@ -23,6 +25,10 @@ const contact = new Schema({
     type: Boolean,
     default: false,
   },
+  owner: {
+    type: SchemaTypes.ObjectId,
+    ref: "user",
+  },
 });
 
-export default mongoose.model("contact", contact);
+export default model("contact", contact);
