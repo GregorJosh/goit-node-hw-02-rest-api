@@ -9,7 +9,11 @@ This application is executing in Node.JS runtime environment and use MongoDB for
 npm start
 ```
 
-## 🗝️ Endpoints
+## 🗝️ Endpoints  
+  
+- 📡 OpenAPI (Swagger) documentation and testing tool:  
+  
+  Request: GET /doc
 
 ### 👥 Managing Contacts:
 
