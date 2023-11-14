@@ -1,4 +1,4 @@
-import Contact from "../../models/contact.js";
+import Contact from "#models/contact.js";
 
 export async function indexContacts(request, response, next) {
   const { page, limit, favorite } = request.query;

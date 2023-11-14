@@ -1,4 +1,4 @@
-import Contact from "../../models/contact.js";
+import Contact from "#models/contact.js";
 
 export async function updateContact(request, response, next) {
   const { params, body } = request;

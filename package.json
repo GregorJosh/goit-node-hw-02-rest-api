@@ -9,6 +9,13 @@
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
   },
+  "imports": {
+    "#controllers/*": "./controllers/*",
+    "#models/*": "./models/*",
+    "#auth/*": "./auth/*",
+    "#drivers/*": "./drivers/*",
+    "#validation/*": "./validation/*"
+  },
   "dependencies": {
     "ansi-colors-es6": "^5.0.0",
     "bcryptjs": "^2.4.3",
@@ -21,7 +28,8 @@
     "mongoose": "^7.6.3",
     "morgan": "1.10.0",
     "passport": "^0.6.0",
-    "passport-jwt": "^4.0.1"
+    "passport-jwt": "^4.0.1",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "eslint": "7.19.0",

@@ -12,9 +12,9 @@ import {
   logoutUser,
   currentUser,
   updateUser,
-} from "../controllers/index.js";
+} from "#controllers/index.js";
 
-import { authMW } from "../auth/index.js";
+import { authMW } from "#auth/index.js";
 
 export const APIRouter = Router();
 

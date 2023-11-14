@@ -1,5 +1,5 @@
-import User from "../../models/user.js";
-import { userSchema, validate } from "../../validation/index.js";
+import User from "#models/user.js";
+import { userSchema, validate } from "#validation/index.js";
 
 export const updateUser = async (request, response, next) => {
   const { user, body } = request;
@@ -12,7 +12,7 @@ export const updateUser = async (request, response, next) => {
 
       return response.status(201).json({
         status: "Success",
-        code: 200,
+        code: 201,
         data: { email, subscription },
       });
     } catch (error) {

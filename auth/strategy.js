@@ -2,7 +2,7 @@ import JWT from "jsonwebtoken";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { config } from "dotenv";
 
-import User from "../models/user.js";
+import User from "#models/user.js";
 
 config();
 

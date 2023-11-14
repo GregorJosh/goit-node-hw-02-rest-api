@@ -1,8 +1,8 @@
 import JWT from "jsonwebtoken";
 import { config } from "dotenv";
 
-import User from "../../models/user.js";
-import { userSchema, validate } from "../../validation/index.js";
+import User from "#models/user.js";
+import { userSchema, validate } from "#validation/index.js";
 
 export const loginUser = async (request, response, next) => {
   const { email, password } = request.body;
