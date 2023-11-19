@@ -12,9 +12,11 @@ import {
   logoutUser,
   currentUser,
   updateUser,
+  updateUserAvatar,
 } from "#controllers/index.js";
 
 import { authMW } from "#auth/index.js";
+import { uploadMW } from "#config/storage.js";
 
 export const APIRouter = Router();
 
@@ -29,3 +31,8 @@ APIRouter.post("/users/login", loginUser);
 APIRouter.get("/users/logout", authMW, logoutUser);
 APIRouter.get("/users/current", authMW, currentUser);
 APIRouter.patch("/users", authMW, updateUser);
+APIRouter.patch(
+  "/users/avatars",
+  authMW, uploadMW.single("avatar"),
+  updateUserAvatar
+);
