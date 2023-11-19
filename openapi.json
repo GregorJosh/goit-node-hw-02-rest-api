@@ -107,23 +107,12 @@
           "required": true
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "integer"
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/Contact"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Success"
                 }
               }
             }
@@ -172,18 +161,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "integer"
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/Contact"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Success"
                 }
               }
             }
@@ -245,18 +223,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "integer"
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/Contact"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Success"
                 }
               }
             }
@@ -624,39 +591,12 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "integer"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "email": {
-                          "type": "string",
-                          "example": "john.doe@email.com"
-                        },
-                        "subscription": {
-                          "type": "string",
-                          "enum": [
-                            "starter",
-                            "pro",
-                            "business"
-                          ],
-                          "example": "starter",
-                          "default": "starter"
-                        }
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/Success"
                 }
               }
             }
@@ -704,6 +644,60 @@
           }
         }
       }
+    },
+    "/users/avatars": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Upload user avatar picture to server",
+        "operationId": "updateUserAvatar",
+        "security": [
+          {
+            "jwt": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Success"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -733,6 +727,10 @@
             ],
             "example": "starter",
             "default": "starter"
+          },
+          "avatar": {
+            "type": "string",
+            "example": "path/to/avatar.jpg"
           },
           "token": {
             "type": "string",
@@ -772,33 +770,7 @@
           }
         }
       },
-      "Success": {
-        "required": [
-          "status",
-          "code",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "code": {
-            "type": "integer"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      },
-      "Error": {
-        "required": [
-          "status",
-          "code",
-          "message",
-          "data"
-        ],
-        "type": "object",
+      "Response": {
         "properties": {
           "status": {
             "type": "string"
@@ -810,9 +782,37 @@
             "type": "string"
           },
           "data": {
-            "type": "string"
+            "type": "object"
           }
         }
+      },
+      "Success": {
+        "allOf": [
+          {
+            "required": [
+              "status",
+              "code",
+              "data"
+            ]
+          },
+          {
+            "$ref": "#/components/schemas/Response"
+          }
+        ]
+      },
+      "Error": {
+        "allOf": [
+          {
+            "required": [
+              "status",
+              "code",
+              "message"
+            ]
+          },
+          {
+            "$ref": "#/components/schemas/Response"
+          }
+        ]
       }
     },
     "securitySchemes": {
