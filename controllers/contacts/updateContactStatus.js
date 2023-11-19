@@ -7,7 +7,7 @@ export const updateContactStatus = async (request, response, next) => {
 
   if (!favorite) {
     response.status(400).json({
-      status: "error",
+      status: "Error",
       code: 400,
       message: "Missing field: favorite",
     });

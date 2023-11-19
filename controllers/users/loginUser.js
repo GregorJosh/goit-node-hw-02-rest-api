@@ -23,7 +23,7 @@ export const loginUser = async (request, response, next) => {
     const user = await User.findOne({ email });
     const { id, subscription } = user;
 
-    if (!user || !(await user.validPassword)) {
+    if (!user || !(await user.validPassword(user.password))) {
       return response.status(401).json({
         status: "Unauthorized",
         code: 401,
@@ -33,7 +33,7 @@ export const loginUser = async (request, response, next) => {
 
     config();
 
-    const token = JWT.sign({ id, email }, process.env.SECRET, {
+    const token = await JWT.sign({ id }, process.env.SECRET, {
       expiresIn: "1h",
     });
 

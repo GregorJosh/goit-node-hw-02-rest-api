@@ -1,4 +1,4 @@
-import ansi from "ansi-colors-es6";
+//import ansi from "node_modules/ansi-colors-es6.js";
 
 export const validate = async (schema, fields) => {
     try {
@@ -6,7 +6,7 @@ export const validate = async (schema, fields) => {
   
       return [true, result];
     } catch (error) {
-      console.log(ansi.bold.redBright(error));
+      console.log(error);
   
       return [false, error.message];
     }
