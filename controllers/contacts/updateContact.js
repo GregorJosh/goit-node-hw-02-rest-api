@@ -6,7 +6,7 @@ export async function updateContact(request, response, next) {
 
   if (Object.keys(body).length === 0) {
     response.status(400).json({
-      status: "error",
+      status: "Error",
       code: 400,
       message: "Missing some fields",
     });
@@ -18,7 +18,7 @@ export async function updateContact(request, response, next) {
     await Contact.findByIdAndUpdate(id, body);
 
     response.status(200).json({
-      status: "success",
+      status: "Success",
       code: 200,
       data: { id, ...body },
     });

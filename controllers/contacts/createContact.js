@@ -18,9 +18,9 @@ export async function createContact(request, response, next) {
 
     const newContact = await Contact.create(request.body);
 
-    response.status(200).json({
-      status: "success",
-      code: 200,
+    response.status(201).json({
+      status: "Success",
+      code: 201,
       data: newContact,
     });
   } catch (error) {

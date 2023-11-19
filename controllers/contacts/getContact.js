@@ -6,7 +6,7 @@ export async function getContact(request, response, next) {
     const contact = await Contact.findById(id);
 
     response.status(200).json({
-      status: "success",
+      status: "Success",
       code: 200,
       data: contact,
     });

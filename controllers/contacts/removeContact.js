@@ -6,7 +6,7 @@ export async function removeContact(request, response, next) {
     await Contact.findByIdAndDelete(id);
 
     response.status(200).json({
-      status: "success",
+      status: "Success",
       code: 200,
       message: "Contact deleted",
     });

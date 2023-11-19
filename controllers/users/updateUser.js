@@ -10,9 +10,9 @@ export const updateUser = async (request, response, next) => {
     try {
       const { email } = await User.findByIdAndUpdate(user.id, { subscription });
 
-      return response.status(201).json({
+      return response.status(200).json({
         status: "Success",
-        code: 201,
+        code: 200,
         data: { email, subscription },
       });
     } catch (error) {
