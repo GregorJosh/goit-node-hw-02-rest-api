@@ -17,7 +17,7 @@ export const signupUser = async (request, response, next) => {
   }
 
   try {
-    const user = await User.findOne({ email }, { email: 1 }).lean();
+    const user = await User.findOne({ email }, { email: 1 });
 
     if (user) {
       return response.status(409).json({
@@ -27,9 +27,10 @@ export const signupUser = async (request, response, next) => {
       });
     }
 
-    const newUser = new User({ email });
+    const newUser = await new User({ email });
     const { subscription } = newUser;
 
+    newUser.setAvatar(email);
     await newUser.setPassword(password);
     await newUser.save();
 
