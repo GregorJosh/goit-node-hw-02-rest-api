@@ -23,7 +23,7 @@ export const loginUser = async (request, response, next) => {
     const user = await User.findOne({ email });
     const { id, subscription } = user;
 
-    if (!user || !(await user.validPassword(user.password))) {
+    if (!user || !(await user.validPassword(password)) || !user.verified) {
       return response.status(401).json({
         status: "Unauthorized",
         code: 401,
