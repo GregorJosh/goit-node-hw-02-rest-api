@@ -21,7 +21,6 @@ export const loginUser = async (request, response, next) => {
 
   try {
     const user = await User.findOne({ email });
-    const { id, subscription } = user;
 
     if (!user || !(await user.validPassword(password)) || !user.verified) {
       return response.status(401).json({
@@ -33,6 +32,7 @@ export const loginUser = async (request, response, next) => {
 
     config();
 
+    const { id, subscription } = user;
     const token = await JWT.sign({ id }, process.env.SECRET, {
       expiresIn: "1h",
     });
