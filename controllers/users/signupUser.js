@@ -1,4 +1,7 @@
+import { nanoid } from "nanoid";
+
 import User from "#models/user.js";
+import { sendVerificationMail } from "#config/sendVerificationMail.js";
 import { userSchema, validate } from "#validation/index.js";
 
 export const signupUser = async (request, response, next) => {
@@ -17,7 +20,8 @@ export const signupUser = async (request, response, next) => {
   }
 
   try {
-    const user = await User.findOne({ email }, { email: 1 });
+    const user = await User.findOne({ email }, { email: 1 }).lean();
+    const verificationToken = nanoid();
 
     if (user) {
       return response.status(409).json({
@@ -27,12 +31,14 @@ export const signupUser = async (request, response, next) => {
       });
     }
 
-    const newUser = await new User({ email });
+    const newUser = await new User({ email, verificationToken });
     const { subscription } = newUser;
 
     newUser.setAvatar(email);
     await newUser.setPassword(password);
     await newUser.save();
+
+    await sendVerificationMail(email, verificationToken);
 
     return response.status(201).json({
       status: "Created",

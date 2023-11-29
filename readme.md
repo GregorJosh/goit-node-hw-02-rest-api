@@ -116,7 +116,7 @@ npm start
 
 - 📡 User log in:
 
-  Request: POST /api/users.login  
+  Request: POST /api/users/login  
   Content-Type: application/json
 
   Example Request Body:
@@ -130,14 +130,43 @@ npm start
 
 - 📡 User log out:
 
-  Request: GET /users/logout
+  Request: GET /api/users/logout
 
   Headers:  
   `Authorization: "Bearer {{token}}"`
 
 - 📡 Get current user:
 
-  Request: GET /users/current
+  Request: GET /api/users/current
+
+  Headers:  
+  `Authorization: "Bearer {{token}}"`  
+    
+### 👤 Managing User Account:  
+  
+- 📡 Set user avatar:
+
+  Request: PATCH /api/users/avatars
+  Content-Type: multipart/form-data
 
   Headers:  
   `Authorization: "Bearer {{token}}"`
+
+  File: avatar  
+
+- 📡 Verify user:
+
+  Request: GET /api/users/verify/:verificationToken
+
+- 📡 Resend mail with verification link:
+
+  Request: POST /api/users/verify/
+  Content-Type: application/json
+
+  Example Request Body:
+
+  ```json
+  {
+    "email": "user.email@host.com"
+  }
+  ```
